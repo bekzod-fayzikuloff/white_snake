@@ -5,10 +5,15 @@ name = "pypi"
 
 [packages]
 mypy = "*"
-django = "*"
 black = "*"
 python-dotenv = "*"
-psycopg2 = "*"
+markdown = "*"
+django-filter = "*"
+django = "==3.0"
+psycopg2 = "==2.8.6"
+django-countries = {extras = ["pyuca"], version = "*"}
+djangorestframework = "==3.10"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 flake8 = "*"
