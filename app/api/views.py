@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from . import services
 from .serializers import OfficeSerializer
 from .models import Office
@@ -21,8 +22,10 @@ class OfficeView(generics.UpdateAPIView, generics.DestroyAPIView, APIView):
     serializer_class = OfficeSerializer
     queryset = Office.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [DjangoFilterBackend, ]
+    filterset_fields = '__all__'
 
-    def get(self, request, **kwargs):
+    def get(self,request, **kwargs):
         """
         Rewrite get() method, in get() method we make viewsets list() method
         and retrieve() method
