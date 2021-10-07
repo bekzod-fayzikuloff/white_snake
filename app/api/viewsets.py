@@ -8,6 +8,7 @@ from rest_framework import permissions
 from rest_framework import mixins
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 
 from . import models
 from . import serializers
@@ -23,6 +24,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
     queryset = models.Company.objects.all()
     serializer_class = serializers.CompanySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [DjangoFilterBackend, ]
+    filterset_fields = ("name", "description", "country", "email", "phone")
 
 
 class PersonViewSet(viewsets.ModelViewSet):
@@ -33,6 +36,8 @@ class PersonViewSet(viewsets.ModelViewSet):
 
     queryset = models.Person.objects.all()
     serializer_class = serializers.PersonSerializer
+    filter_backends = [DjangoFilterBackend, ]
+    filterset_fields = '__all__'
 
     def retrieve(self, request, *args, **kwargs):
         """
@@ -69,6 +74,8 @@ class LanguageViewSet(
 
     serializer_class = serializers.LanguageSerializer
     queryset = models.Language.objects.all()
+    filter_backends = [DjangoFilterBackend, ]
+    filterset_fields = ("name", "description")
 
     def list(self, request, *args, **kwargs):
         """
