@@ -25,7 +25,7 @@ class OfficeView(generics.UpdateAPIView, generics.DestroyAPIView, APIView):
     filter_backends = [DjangoFilterBackend, ]
     filterset_fields = '__all__'
 
-    def get(self,request, **kwargs):
+    def get(self, request, **kwargs) -> Response:
         """
         Rewrite get() method, in get() method we make viewsets list() method
         and retrieve() method
@@ -60,7 +60,7 @@ class OfficeView(generics.UpdateAPIView, generics.DestroyAPIView, APIView):
             serializer_data["workers"] = services.get_office_worker_serialized(obj)
             return Response(serializer_data)
 
-    def destroy(self, request, *args, **kwargs):
+    def destroy(self, request, *args, **kwargs) -> Response:
         try:
             instance = self.get_object()
             self.perform_destroy(instance)
@@ -78,7 +78,7 @@ class OfficeCreateView(generics.CreateAPIView):
     queryset = Office.objects.all()
     serializer_class = OfficeSerializer
 
-    def create(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs) -> Response:
         """
         create() method call `super_class` create() method
         :param request:
@@ -86,4 +86,4 @@ class OfficeCreateView(generics.CreateAPIView):
         :param kwargs:
         :return:
         """
-        super().create(request, *args, **kwargs)
+        return super().create(request, *args, **kwargs)

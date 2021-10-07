@@ -15,6 +15,7 @@ django-countries = {extras = ["pyuca"], version = "*"}
 djangorestframework = "==3.10"
 djangorestframework-simplejwt = "*"
 pytest = "*"
+pytest-django = "*"
 
 [dev-packages]
 flake8 = "*"

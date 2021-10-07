@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "django_filters",
     "django_countries",
     "rest_framework_simplejwt",
-    # project package
+    # project application
     "api.apps.ApiConfig",
 ]
 

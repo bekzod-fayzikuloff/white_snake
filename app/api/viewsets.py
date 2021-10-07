@@ -39,7 +39,7 @@ class PersonViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, ]
     filterset_fields = '__all__'
 
-    def retrieve(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs) -> Response:
         """
         Rewrite retrieve() method with some changing on serialized data on `detail`
         :param request:
@@ -77,7 +77,7 @@ class LanguageViewSet(
     filter_backends = [DjangoFilterBackend, ]
     filterset_fields = ("name", "description")
 
-    def list(self, request, *args, **kwargs):
+    def list(self, request, *args, **kwargs) -> Response:
         """
         Getting all model records and serialize this records data
         :param request:
@@ -90,7 +90,7 @@ class LanguageViewSet(
         ).data
         return Response(serializer_data)
 
-    def create(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs) -> Response:
         """
         Add new record on model and retrieve this record after serializing
         :param request:
@@ -106,7 +106,7 @@ class LanguageViewSet(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
 
-    def update(self, request, *args, **kwargs):
+    def update(self, request, *args, **kwargs) -> Response:
         """
         Change record field value
         :param request:
@@ -121,7 +121,7 @@ class LanguageViewSet(
         self.perform_update(serializer)
         return Response(serializer.data)
 
-    def retrieve(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs) -> Response:
         """
         Getting model instance and serialize this instance
         :param request:
